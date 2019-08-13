@@ -10,7 +10,7 @@ composer install franzose/gimme-url
 
 ## Setup and usage
 
-URL generator requires you to provide Router and RequestContext instances. The latter gathers information from a Psr\Http\Message\ServerRequestInterface instance and is used to build absolute paths to named routes.
+URL generator requires you to provide `Router` and `RequestContext` instances. The latter gathers information from a `Psr\Http\Message\ServerRequestInterface` instance and is used to build absolute paths to named routes.
 
 ```php
 <?php
@@ -18,14 +18,16 @@ URL generator requires you to provide Router and RequestContext instances. The l
 use GimmeUrl\RequestContext;
 use GimmeUrl\Router;
 use GimmeUrl\UrlGenerator;
+use Zend\Diactoros\ServerRequestFactory;
 
 $router = new Router();
 $router->get('/foo/{bar}', function () {
     //
 })->setName('foo_route');
 
-// Let's say the request is secure and is made at example.com on 8080 port 
-$context = RequestContext::fromRequest($serverRequest);
+// Let's say the request is secure and is made at example.com on 8080 port
+$request = ServerRequestFactory::fromGlobals($_SERVER, $_GET, $_POST, $_COOKIE, $_FILES);
+$context = RequestContext::fromRequest($request);
 $generator = new UrlGenerator($router, $context);
 
 // Then you'll get this
