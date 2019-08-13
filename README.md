@@ -1,5 +1,5 @@
 # Gimme URL
-Gimme URL is a missing URL generator for the League Route library. It's capable to generate relative and absolute paths to named routes.
+Gimme URL is a missing URL generator for the [League Route](https://github.com/thephpleague/route) library. It's capable to generate relative and absolute paths to named routes.
 
 ## Installation
 Use Composer to install Gimme URL:
