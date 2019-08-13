@@ -19,6 +19,12 @@ interface UrlGeneratorInterface
      *     $path = $generator->relative('foo', ['param1' => 'value1']);
      *     // '/foo/value1'
      *
+     * Any parameters that does not directly belong
+     * to the route will appear in the query string:
+     *
+     *     $path = $generator->relative('foo', ['param1' => 'value1', ['bar' => '123']);
+     *     // '/foo/value1?bar=123'
+     *
      * @param string $route Route name
      * @param array $parameters Route parameters
      *
@@ -48,6 +54,11 @@ interface UrlGeneratorInterface
      *     $url = $generator->absolute('foo', ['param1' => 'value1']);
      *     // 'https://localhost:9999/foo/value1'
      *
+     * Any parameters that does not directly belong
+     * to the route will appear in the query string:
+     *
+     *     $path = $generator->absolute('foo', ['param1' => 'value1', ['bar' => '123']);
+     *     // 'https://localhost:9999/foo/value1?bar=123'
      *
      * @param string $route Route name
      * @param array $parameters Route parameters
